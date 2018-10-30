@@ -1,0 +1,26 @@
+//#include "jt_funcs.h"
+
+shader jt_gridless(
+	int fps = 25,
+
+	output point out = vector(0,0,0)
+)
+{
+	float time_d = 1.0/fps;
+	point P_obj = transform("object", P);
+	
+	vector vol_sample;
+	point P_disp = P_obj;
+	vector vol_sample_offset = vector(0,0,0);
+
+	
+	vol_sample = -1 * texture3d("vel_39", P_disp, "interp", "linear") * time_d;
+	P_disp += vol_sample;
+	vol_sample_offset += vol_sample;
+
+	vol_sample = -1 * texture3d("vel_38", P_disp, "interp", "linear") * time_d;
+	P_disp += vol_sample;
+	vol_sample_offset += vol_sample;
+
+	out = vol_sample_offset;
+}
