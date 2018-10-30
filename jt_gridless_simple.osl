@@ -14,13 +14,15 @@ shader jt_gridless(
 	vector vol_sample_offset = vector(0,0,0);
 
 	
-	vol_sample = -1 * texture3d("vel_39", P_disp, "interp", "linear") * time_d;
+	//vol_sample = -1 * texture3d("vel_39", P_disp, "interp", "linear", "wrap", "black", "missingcolor", color(0, 0, 0)) * time_d;
+	vol_sample = -1 * texture3d("vel_39", P_disp, "interp", "linear") * time_d;	
 	P_disp += vol_sample;
 	vol_sample_offset += vol_sample;
 
-	vol_sample = -1 * texture3d("vel_38", P_disp, "interp", "linear") * time_d;
+	//vol_sample = -1 * texture3d("vel_38", P_disp, "interp", "linear", "wrap", "black", "missingcolor", color(0, 0, 0)) * time_d;
+	vol_sample = -1 * texture3d("vel_38", P_disp, "interp", "linear") * time_d;	
 	P_disp += vol_sample;
-	vol_sample_offset += vol_sample;
+	//vol_sample_offset += vol_sample;
 
 	out = vol_sample_offset;
 }
